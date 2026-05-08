@@ -84,11 +84,16 @@
 
     .card {
       width:min(700px,100%);
+      margin:0 auto;
       padding:40px;
       border-radius:32px;
       border:1px solid var(--border);
       background:var(--card);
       position:relative;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
     }
 
     .card::before {
@@ -239,8 +244,15 @@
     document.getElementById('date-line').textContent = now.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
 
     var key = two(now.getMonth()+1)+'-'+two(now.getDate());
-    var day = THEME_DAYS[key] || 'A day to make something nice';
-    document.getElementById('day-title').textContent = day;
+    var day = THEME_DAYS[key];
+    var card = document.querySelector('.card');
+
+    if (day) {
+      document.getElementById('day-title').textContent = day;
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
   }
 
   update();
