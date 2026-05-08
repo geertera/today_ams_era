@@ -15,7 +15,7 @@
       --era-purple: #7c3cff;
       --text: #ffffff;
       --muted: rgba(255, 255, 255, 0.66);
-      --card: rgba(10, 10, 10, 0.76);
+      --card: rgba(10, 10, 10, 0.62);
       --border: rgba(255, 255, 255, 0.15);
     }
 
@@ -33,18 +33,20 @@
 
     body {
       background:
-        linear-gradient(115deg, rgba(0, 0, 0, 0.96) 0%, rgba(0, 0, 0, 0.86) 48%, rgba(0, 0, 0, 0.58) 100%),
+        radial-gradient(circle at 50% 30%, rgba(255, 46, 99, 0.18), transparent 34%),
+        radial-gradient(circle at 78% 80%, rgba(124, 60, 255, 0.20), transparent 34%),
         linear-gradient(135deg, #111111 0%, #050505 58%, #190815 100%);
     }
 
     .background-accent {
       position: fixed;
-      right: -240px;
-      bottom: -280px;
-      width: 720px;
-      height: 720px;
+      left: 50%;
+      bottom: -420px;
+      width: 920px;
+      height: 920px;
+      margin-left: -460px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 46, 99, 0.34), rgba(124, 60, 255, 0.18) 42%, transparent 68%);
+      background: radial-gradient(circle, rgba(255, 46, 99, 0.22), rgba(124, 60, 255, 0.13) 42%, transparent 68%);
       z-index: 0;
     }
 
@@ -75,16 +77,23 @@
       height: 100vh;
       width: 100vw;
       padding: 72px;
-      display: grid;
-      grid-template-columns: 0.9fr 1.25fr;
+      display: flex;
       align-items: center;
-      gap: 72px;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .frontpage {
+      width: min(1180px, 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .eyebrow {
       color: var(--muted);
       text-transform: uppercase;
-      letter-spacing: 0.24em;
+      letter-spacing: 0.26em;
       font-size: 20px;
       font-weight: 700;
       margin-bottom: 24px;
@@ -92,130 +101,91 @@
 
     .title {
       margin: 0;
-      font-size: 122px;
-      line-height: 0.9;
-      letter-spacing: -0.08em;
+      font-size: 142px;
+      line-height: 0.86;
+      letter-spacing: -0.085em;
       font-weight: 800;
       text-transform: uppercase;
-      max-width: 780px;
     }
 
     .accent-line {
-      width: 250px;
+      width: 280px;
       height: 8px;
-      margin-top: 36px;
+      margin: 38px auto 42px;
       border-radius: 999px;
       background: linear-gradient(90deg, var(--era-pink), var(--era-orange), var(--era-purple));
     }
 
     .clock {
-      margin-top: 42px;
-      font-size: 86px;
-      line-height: 1;
-      letter-spacing: -0.06em;
+      font-size: 118px;
+      line-height: 0.9;
+      letter-spacing: -0.075em;
       font-weight: 300;
+      margin-bottom: 18px;
     }
 
     .date-line {
-      margin-top: 14px;
       color: var(--muted);
-      font-size: 28px;
+      font-size: 31px;
       font-weight: 700;
       letter-spacing: -0.03em;
+      margin-bottom: 46px;
     }
 
-    .today-card {
-      justify-self: end;
-      width: 100%;
-      min-height: 620px;
-      padding: 48px;
+    .day-card {
+      width: min(820px, 100%);
+      min-height: 210px;
+      padding: 42px 54px;
       border: 1px solid var(--border);
       border-radius: 36px;
       background: var(--card);
-      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.38);
       position: relative;
       overflow: hidden;
     }
 
-    .today-card::before {
+    .day-card::before {
       content: "";
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       height: 7px;
-      border-radius: 36px 36px 0 0;
       background: linear-gradient(90deg, var(--era-pink), var(--era-orange), var(--era-purple));
     }
 
     .card-label {
       color: var(--muted);
-      font-size: 19px;
-      letter-spacing: 0.18em;
+      font-size: 18px;
+      letter-spacing: 0.20em;
       text-transform: uppercase;
       font-weight: 700;
-      margin-bottom: 34px;
-    }
-
-    .day-list {
-      display: grid;
-      gap: 24px;
-    }
-
-    .day-item {
-      display: grid;
-      grid-template-columns: 58px 1fr;
-      gap: 20px;
-      align-items: start;
-      padding-bottom: 24px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .day-item:last-child { border-bottom: 0; padding-bottom: 0; }
-
-    .number {
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      font-weight: 800;
-      background: rgba(255, 255, 255, 0.08);
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      margin-bottom: 22px;
     }
 
     .day-title {
       margin: 0;
-      font-size: 32px;
-      line-height: 1.1;
-      letter-spacing: -0.035em;
+      font-size: 54px;
+      line-height: 1.02;
+      letter-spacing: -0.055em;
       font-weight: 800;
-    }
-
-    .day-source {
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 19px;
-      line-height: 1.32;
     }
 
     .status {
       color: var(--muted);
-      font-size: 26px;
+      font-size: 28px;
       line-height: 1.3;
-      margin-top: 120px;
+      margin-top: 18px;
     }
 
     @media (max-width: 900px) {
       .brand-mark { top: 36px; left: 36px; }
-      .page { padding: 36px; grid-template-columns: 1fr; gap: 36px; }
-      .title { font-size: 72px; }
-      .clock { font-size: 62px; }
-      .today-card { min-height: 480px; padding: 34px; }
-      .day-title { font-size: 26px; }
+      .page { padding: 36px; }
+      .title { font-size: 78px; }
+      .clock { font-size: 76px; }
+      .date-line { font-size: 24px; }
+      .day-card { padding: 34px; }
+      .day-title { font-size: 36px; }
     }
   </style>
 </head>
@@ -229,56 +199,56 @@
   </div>
 
   <main class="page">
-    <section class="hero" aria-label="Today">
+    <section class="frontpage" aria-label="Today">
       <div class="eyebrow" id="weekday">Today</div>
       <h1 class="title">Today</h1>
       <div class="accent-line"></div>
       <div class="clock" id="clock">--:--</div>
       <div class="date-line" id="date-line">Loading date...</div>
-    </section>
 
-    <section class="today-card" aria-label="Day of today">
-      <div class="card-label">What day is it?</div>
-      <div id="days" class="day-list">
-        <div class="status">Loading today's days...</div>
+      <div class="day-card" aria-label="What day is it">
+        <div class="card-label">Day of the day</div>
+        <h2 class="day-title" id="day-title">Loading...</h2>
       </div>
     </section>
   </main>
 
   <script>
     var CLOCK_OFFSET_MINUTES = 120;
-    var STORAGE_KEY = 'era-today-cache';
+    var STORAGE_KEY = 'era-today-single-cache';
 
     var FALLBACK_DAYS = {
-      '01-01': ['New Year’s Day', 'World Peace Day'],
-      '02-14': ['Valentine’s Day'],
-      '03-08': ['International Women’s Day'],
-      '03-20': ['International Day of Happiness'],
-      '04-22': ['Earth Day'],
-      '05-01': ['Labour Day'],
-      '05-04': ['Star Wars Day'],
-      '05-05': ['Liberation Day'],
-      '06-05': ['World Environment Day'],
-      '06-21': ['World Music Day'],
-      '07-17': ['World Emoji Day'],
-      '08-19': ['World Photography Day'],
-      '09-21': ['International Day of Peace'],
-      '10-01': ['International Coffee Day'],
-      '10-10': ['World Mental Health Day'],
-      '11-13': ['World Kindness Day'],
-      '12-05': ['Sinterklaas'],
-      '12-25': ['Christmas Day'],
-      '12-31': ['New Year’s Eve']
+      '01-01': 'New Year’s Day',
+      '02-14': 'Valentine’s Day',
+      '03-08': 'International Women’s Day',
+      '03-20': 'International Day of Happiness',
+      '04-22': 'Earth Day',
+      '05-01': 'Labour Day',
+      '05-04': 'Star Wars Day',
+      '05-05': 'Liberation Day',
+      '06-05': 'World Environment Day',
+      '06-21': 'World Music Day',
+      '07-17': 'World Emoji Day',
+      '08-19': 'World Photography Day',
+      '09-21': 'International Day of Peace',
+      '10-01': 'International Coffee Day',
+      '10-10': 'World Mental Health Day',
+      '11-13': 'World Kindness Day',
+      '12-05': 'Sinterklaas',
+      '12-25': 'Christmas Day',
+      '12-31': 'New Year’s Eve'
     };
 
     var TRANSLATIONS = [
       ['Dag van de', 'Day of the'],
+      ['Dag van het', 'Day of the'],
+      ['Dag van', 'Day of'],
       ['Wereld', 'World'],
       ['Internationale Dag voor', 'International Day for'],
       ['Internationale Dag van', 'International Day of'],
+      ['Internationale', 'International'],
       ['Nationale', 'National'],
-      ['Nederlandse', 'Dutch'],
-      ['Feestdag', 'Holiday']
+      ['Nederlandse', 'Dutch']
     ];
 
     function correctedNow() {
@@ -305,79 +275,44 @@
       return String(text || '').replace(/\s+/g, ' ').trim();
     }
 
-    function escapeHtml(text) {
-      return clean(text)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
-    }
-
     function softTranslate(title) {
       var result = clean(title);
-
       for (var i = 0; i < TRANSLATIONS.length; i++) {
         result = result.split(TRANSLATIONS[i][0]).join(TRANSLATIONS[i][1]);
       }
-
       result = result.replace(/^De\s+/i, 'The ');
       result = result.replace(/^Het\s+/i, 'The ');
       return result;
     }
 
-    function renderDays(days, source) {
-      var container = document.getElementById('days');
-      var html = '';
-
-      if (!days || !days.length) {
-        container.innerHTML = '<div class="status">No special day found for today.</div>';
-        return;
-      }
-
-      for (var i = 0; i < days.length && i < 5; i++) {
-        html += '<article class="day-item">' +
-          '<div class="number">' + (i + 1) + '</div>' +
-          '<div>' +
-            '<h2 class="day-title">' + escapeHtml(days[i]) + '</h2>' +
-            '<div class="day-source">' + escapeHtml(source) + '</div>' +
-          '</div>' +
-        '</article>';
-      }
-
-      container.innerHTML = html;
-      localStorage.setItem(STORAGE_KEY, html);
+    function setDayTitle(title) {
+      var finalTitle = clean(title) || 'A good day to make something nice';
+      document.getElementById('day-title').textContent = finalTitle;
+      localStorage.setItem(STORAGE_KEY, finalTitle);
     }
 
-    function fallbackDays() {
+    function fallbackDay() {
       var now = correctedNow();
       var key = twoDigits(now.getMonth() + 1) + '-' + twoDigits(now.getDate());
-      var days = FALLBACK_DAYS[key] || ['A good day to make something nice'];
-      renderDays(days, 'Fallback calendar');
+      setDayTitle(FALLBACK_DAYS[key] || 'A good day to make something nice');
     }
 
     function parseFijneDagVan(text) {
-      var days = [];
-      var seen = {};
       var cleaned = clean(text);
       var matches = cleaned.match(/(?:Dag van de|Dag van het|Dag van|Wereld|Internationale Dag|Nationale|Nederlandse)[A-ZÀ-ÿa-z0-9 '\-]+/g) || [];
 
       for (var i = 0; i < matches.length; i++) {
         var title = softTranslate(matches[i]);
         title = title.replace(/Vandaag.*/i, '').trim();
-        if (title.length < 6 || title.length > 70) continue;
-        if (seen[title]) continue;
-        seen[title] = true;
-        days.push(title);
-        if (days.length >= 5) break;
+        if (title.length >= 6 && title.length <= 70) return title;
       }
 
-      return days;
+      return '';
     }
 
-    function loadSpecialDays() {
+    function loadSpecialDay() {
       var cached = localStorage.getItem(STORAGE_KEY);
-      if (cached) document.getElementById('days').innerHTML = cached;
+      if (cached) document.getElementById('day-title').textContent = cached;
 
       var url = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://www.fijnedagvan.nl/?_=' + new Date().getTime());
       var xhr = new XMLHttpRequest();
@@ -388,26 +323,23 @@
         if (xhr.readyState === 4) {
           if (xhr.status >= 200 && xhr.status < 300) {
             var parsed = parseFijneDagVan(xhr.responseText);
-            if (parsed.length) {
-              renderDays(parsed, 'Source: FijneDagVan.nl');
-            } else if (!cached) {
-              fallbackDays();
-            }
+            if (parsed) setDayTitle(parsed);
+            else if (!cached) fallbackDay();
           } else if (!cached) {
-            fallbackDays();
+            fallbackDay();
           }
         }
       };
 
-      xhr.onerror = function () { if (!cached) fallbackDays(); };
-      xhr.ontimeout = function () { if (!cached) fallbackDays(); };
+      xhr.onerror = function () { if (!cached) fallbackDay(); };
+      xhr.ontimeout = function () { if (!cached) fallbackDay(); };
       xhr.send();
     }
 
     updateClock();
     setInterval(updateClock, 1000);
-    loadSpecialDays();
-    setInterval(loadSpecialDays, 3600000);
+    loadSpecialDay();
+    setInterval(loadSpecialDay, 3600000);
 
     setTimeout(function () {
       window.location.reload();
