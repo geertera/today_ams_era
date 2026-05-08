@@ -14,178 +14,109 @@
       --era-orange: #ff7a1a;
       --era-purple: #7c3cff;
       --text: #ffffff;
-      --muted: rgba(255, 255, 255, 0.66);
-      --card: rgba(10, 10, 10, 0.62);
-      --border: rgba(255, 255, 255, 0.15);
+      --muted: rgba(255,255,255,0.66);
+      --card: rgba(10,10,10,0.62);
+      --border: rgba(255,255,255,0.15);
     }
 
     * { box-sizing: border-box; }
 
     html, body {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      overflow: hidden;
-      color: var(--text);
-      background: #050505;
+      width:100%; height:100%; margin:0; overflow:hidden;
+      color:var(--text); background:#050505;
       font-family: Arial, Helvetica, "Liberation Sans", sans-serif;
     }
 
     body {
       background:
-        radial-gradient(circle at 50% 30%, rgba(255, 46, 99, 0.18), transparent 34%),
-        radial-gradient(circle at 78% 80%, rgba(124, 60, 255, 0.20), transparent 34%),
-        linear-gradient(135deg, #111111 0%, #050505 58%, #190815 100%);
+        radial-gradient(circle at 50% 30%, rgba(255,46,99,0.18), transparent 34%),
+        radial-gradient(circle at 78% 80%, rgba(124,60,255,0.20), transparent 34%),
+        linear-gradient(135deg,#111,#050505,#190815);
     }
 
     .background-accent {
       position: fixed;
-      left: 50%;
-      bottom: -420px;
-      width: 920px;
-      height: 920px;
-      margin-left: -460px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 46, 99, 0.22), rgba(124, 60, 255, 0.13) 42%, transparent 68%);
-      z-index: 0;
+      left:50%; bottom:-420px;
+      width:920px; height:920px;
+      margin-left:-460px;
+      border-radius:50%;
+      background: radial-gradient(circle, rgba(255,46,99,0.22), rgba(124,60,255,0.13) 42%, transparent 68%);
+      z-index:0;
     }
 
     .brand-mark {
-      position: fixed;
-      top: 58px;
-      left: 72px;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      letter-spacing: 0.18em;
-      font-size: 16px;
-      font-weight: 800;
-      text-transform: uppercase;
+      position: fixed; top:58px; left:72px; z-index:2;
+      display:flex; align-items:center; gap:14px;
+      letter-spacing:0.18em; font-size:16px; font-weight:800; text-transform:uppercase;
     }
 
-    .brand-dot {
-      width: 13px;
-      height: 13px;
-      border-radius: 50%;
-      background: var(--era-pink);
-    }
+    .brand-dot { width:13px; height:13px; border-radius:50%; background:var(--era-pink); }
 
     .page {
-      position: relative;
-      z-index: 1;
-      height: 100vh;
-      width: 100vw;
-      padding: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .frontpage {
-      width: min(1180px, 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .eyebrow {
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.26em;
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 24px;
+      position:relative; z-index:1;
+      height:100vh; width:100vw;
+      display:flex; align-items:center; justify-content:center;
+      text-align:center; padding:72px;
     }
 
     .title {
-      margin: 0;
-      font-size: 142px;
-      line-height: 0.86;
-      letter-spacing: -0.085em;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-
-    .accent-line {
-      width: 280px;
-      height: 8px;
-      margin: 38px auto 42px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--era-pink), var(--era-orange), var(--era-purple));
+      font-size:140px;
+      line-height:0.85;
+      letter-spacing:-0.08em;
+      font-weight:800;
+      text-transform:uppercase;
+      margin:0 0 30px;
     }
 
     .clock {
-      font-size: 118px;
-      line-height: 0.9;
-      letter-spacing: -0.075em;
-      font-weight: 300;
-      margin-bottom: 18px;
+      font-size:110px;
+      font-weight:300;
+      letter-spacing:-0.07em;
+      margin-bottom:10px;
     }
 
     .date-line {
-      color: var(--muted);
-      font-size: 31px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: 46px;
+      color:var(--muted);
+      font-size:30px;
+      font-weight:700;
+      margin-bottom:40px;
     }
 
-    .day-card {
-      width: min(820px, 100%);
-      min-height: 210px;
-      padding: 42px 54px;
-      border: 1px solid var(--border);
-      border-radius: 36px;
-      background: var(--card);
-      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.38);
-      position: relative;
-      overflow: hidden;
+    .card {
+      width:min(700px,100%);
+      padding:40px;
+      border-radius:32px;
+      border:1px solid var(--border);
+      background:var(--card);
+      position:relative;
     }
 
-    .day-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 7px;
-      background: linear-gradient(90deg, var(--era-pink), var(--era-orange), var(--era-purple));
+    .card::before {
+      content:"";
+      position:absolute; top:0; left:0; right:0;
+      height:6px;
+      background:linear-gradient(90deg,var(--era-pink),var(--era-orange),var(--era-purple));
     }
 
-    .card-label {
-      color: var(--muted);
-      font-size: 18px;
-      letter-spacing: 0.20em;
-      text-transform: uppercase;
-      font-weight: 700;
-      margin-bottom: 22px;
+    .label {
+      color:var(--muted);
+      font-size:18px;
+      letter-spacing:0.2em;
+      text-transform:uppercase;
+      margin-bottom:16px;
     }
 
-    .day-title {
-      margin: 0;
-      font-size: 54px;
-      line-height: 1.02;
-      letter-spacing: -0.055em;
-      font-weight: 800;
+    .day {
+      font-size:52px;
+      font-weight:800;
+      letter-spacing:-0.04em;
     }
 
-    .status {
-      color: var(--muted);
-      font-size: 28px;
-      line-height: 1.3;
-      margin-top: 18px;
-    }
-
-    @media (max-width: 900px) {
-      .brand-mark { top: 36px; left: 36px; }
-      .page { padding: 36px; }
-      .title { font-size: 78px; }
-      .clock { font-size: 76px; }
-      .date-line { font-size: 24px; }
-      .day-card { padding: 34px; }
-      .day-title { font-size: 36px; }
+    @media (max-width:900px) {
+      .title { font-size:70px; }
+      .clock { font-size:60px; }
+      .date-line { font-size:22px; }
+      .day { font-size:32px; }
     }
   </style>
 </head>
@@ -199,159 +130,67 @@
   </div>
 
   <main class="page">
-    <section class="frontpage" aria-label="Today">
-      <div class="eyebrow" id="weekday">Today</div>
-      <h1 class="title">Today</h1>
-      <div class="accent-line"></div>
+    <div>
+      <h1 class="title" id="weekday">Friday</h1>
       <div class="clock" id="clock">--:--</div>
-      <div class="date-line" id="date-line">Loading date...</div>
+      <div class="date-line" id="date-line">May 8, 2026</div>
 
-      <div class="day-card" aria-label="What day is it">
-        <div class="card-label">Day of the day</div>
-        <h2 class="day-title" id="day-title">Today is a good day</h2>
+      <div class="card">
+        <div class="label">Today is:</div>
+        <div class="day" id="day-title">A day to make something nice</div>
       </div>
-    </section>
+    </div>
   </main>
 
-  <script>
-    var CLOCK_OFFSET_MINUTES = 120;
-    var THEME_DAYS = {
-      '01-01': 'International Day of Peace',
-      '01-04': 'World Braille Day',
-      '01-24': 'Peanut Butter Day',
-      '01-27': 'International Holocaust Remembrance Day',
-      '01-28': 'Data Privacy Day',
-      '02-04': 'World Cancer Day',
-      '02-14': 'Valentine’s Day',
-      '02-15': 'International Childhood Cancer Day',
-      '02-21': 'International Mother Language Day',
-      '02-27': 'International Polar Bear Day',
-      '03-01': 'World Compliment Day',
-      '03-08': 'International Women’s Day',
-      '03-14': 'Pi Day',
-      '03-17': 'World Sleep Day',
-      '03-20': 'International Day of Happiness',
-      '03-21': 'World Poetry Day',
-      '03-22': 'World Water Day',
-      '03-23': 'World Meteorological Day',
-      '03-24': 'World Tuberculosis Day',
-      '03-31': 'International Transgender Day of Visibility',
-      '04-02': 'World Autism Awareness Day',
-      '04-04': 'World Stray Animals Day',
-      '04-07': 'World Health Day',
-      '04-11': 'World Parkinson’s Day',
-      '04-12': 'International Day of Human Space Flight',
-      '04-19': 'Day of the Engineer',
-      '04-22': 'Earth Day',
-      '04-23': 'World Book Day',
-      '04-24': 'World Day for Laboratory Animals',
-      '04-25': 'World DNA Day',
-      '04-27': 'National Superhero Day',
-      '05-01': 'Labour Day',
-      '05-03': 'World Press Freedom Day',
-      '05-04': 'Star Wars Day',
-      '05-05': 'Liberation Day',
-      '05-06': 'International No Diet Day',
-      '05-08': 'World Red Cross and Red Crescent Day',
-      '05-09': 'Europe Day',
-      '05-12': 'International Nurses Day',
-      '05-15': 'International Day of Families',
-      '05-16': 'International Coeliac Disease Day',
-      '05-17': 'World Telecommunication Day',
-      '05-20': 'Annie M.G. Schmidt Day',
-      '05-25': 'Towel Day',
-      '05-26': 'Day of the Child of Divorced Parents',
-      '05-31': 'World No Tobacco Day',
-      '06-01': 'International Children’s Day',
-      '06-05': 'World Environment Day',
-      '06-08': 'World Oceans Day',
-      '06-12': 'World Day Against Child Labour',
-      '06-13': 'International Albinism Awareness Day',
-      '06-14': 'World Blood Donor Day',
-      '06-15': 'Global Wind Day',
-      '06-17': 'World Day to Combat Desertification and Drought',
-      '06-20': 'World Refugee Day',
-      '06-21': 'World Music Day',
-      '07-01': 'Keti Koti',
-      '07-11': 'World Population Day',
-      '07-13': 'International Puzzle Day',
-      '07-18': 'Nelson Mandela Day',
-      '07-30': 'International Day of Friendship',
-      '08-09': 'International Day of the World’s Indigenous Peoples',
-      '08-10': 'World Lion Day',
-      '08-12': 'International Youth Day',
-      '08-13': 'International Left-Handers Day',
-      '08-19': 'World Photography Day',
-      '08-23': 'International Day for the Remembrance of the Slave Trade',
-      '08-30': 'International Day of the Disappeared',
-      '09-08': 'International Literacy Day',
-      '09-10': 'World Suicide Prevention Day',
-      '09-14': 'World Eczema Day',
-      '09-16': 'International Day for the Preservation of the Ozone Layer',
-      '09-21': 'International Day of Peace',
-      '09-22': 'Car-Free Day',
-      '09-27': 'World Tourism Day',
-      '10-01': 'International Coffee Day',
-      '10-02': 'International Day of Non-Violence',
-      '10-04': 'World Animal Day',
-      '10-05': 'World Teachers’ Day',
-      '10-10': 'World Mental Health Day',
-      '10-11': 'Coming Out Day',
-      '10-16': 'World Food Day',
-      '10-24': 'United Nations Day',
-      '10-31': 'Halloween',
-      '11-09': 'Inventors’ Day',
-      '11-10': 'Day of Informal Care',
-      '11-11': 'International Science Day',
-      '11-13': 'World Kindness Day',
-      '11-14': 'World Diabetes Day',
-      '11-19': 'International Men’s Day',
-      '11-20': 'Universal Children’s Day',
-      '11-21': 'World Television Day',
-      '12-01': 'World AIDS Day',
-      '12-02': 'International Day for the Abolition of Slavery',
-      '12-03': 'International Day of Persons with Disabilities',
-      '12-05': 'International Volunteer Day',
-      '12-07': 'International Civil Aviation Day',
-      '12-10': 'Human Rights Day',
-      '12-14': 'Monkey Day',
-      '12-15': 'Kingdom Day',
-      '12-25': 'Christmas Day',
-      '12-31': 'New Year’s Eve'
-    };
+<script>
+  var CLOCK_OFFSET_MINUTES = 120;
 
-    function correctedNow() {
-      return new Date(new Date().getTime() + CLOCK_OFFSET_MINUTES * 60000);
-    }
+  var THEME_DAYS = {
+    '01-01':'New Year’s Day',
+    '02-14':'Valentine’s Day',
+    '03-17':'St. Patrick’s Day',
+    '03-20':'International Day of Happiness',
+    '04-01':'April Fools’ Day',
+    '04-22':'Earth Day',
+    '05-01':'Labour Day',
+    '05-04':'Star Wars Day',
+    '05-05':'Liberation Day',
+    '06-01':'Children’s Day',
+    '06-21':'World Music Day',
+    '07-04':'Independence Day (US)',
+    '07-17':'World Emoji Day',
+    '08-19':'World Photography Day',
+    '09-21':'International Day of Peace',
+    '10-01':'International Coffee Day',
+    '10-31':'Halloween',
+    '11-13':'World Kindness Day',
+    '11-25':'Thanksgiving (US approx)',
+    '12-05':'Sinterklaas',
+    '12-25':'Christmas Day',
+    '12-31':'New Year’s Eve'
+  };
 
-    function twoDigits(number) {
-      return number < 10 ? '0' + number : '' + number;
-    }
+  function correctedNow(){
+    return new Date(new Date().getTime() + CLOCK_OFFSET_MINUTES*60000);
+  }
 
-    function getThemeDay(now) {
-      var key = twoDigits(now.getMonth() + 1) + '-' + twoDigits(now.getDate());
-      return THEME_DAYS[key] || 'A good day to make something nice';
-    }
+  function two(n){ return n<10?'0'+n:n; }
 
-    function updatePage() {
-      var now = correctedNow();
-      document.getElementById('clock').textContent = twoDigits(now.getHours()) + ':' + twoDigits(now.getMinutes());
-      document.getElementById('weekday').textContent = now.toLocaleDateString('en-GB', { weekday: 'long' });
-      document.getElementById('date-line').textContent = now.toLocaleDateString('en-GB', {
-        weekday: 'long',
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
-      });
-      document.getElementById('day-title').textContent = getThemeDay(now);
-    }
+  function update(){
+    var now = correctedNow();
 
-    updatePage();
-    setInterval(updatePage, 1000);
+    document.getElementById('weekday').textContent = now.toLocaleDateString('en-US',{weekday:'long'});
+    document.getElementById('clock').textContent = two(now.getHours())+':'+two(now.getMinutes());
+    document.getElementById('date-line').textContent = now.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
 
-    setTimeout(function () {
-      window.location.reload();
-    }, 21600000);
-  </script>
+    var key = two(now.getMonth()+1)+'-'+two(now.getDate());
+    var day = THEME_DAYS[key] || 'A day to make something nice';
+    document.getElementById('day-title').textContent = day;
+  }
+
+  update();
+  setInterval(update,1000);
+</script>
+
 </body>
 </html>
