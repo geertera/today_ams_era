@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Today</title>
+
+  <style>
+    :root {
+      --era-pink: #ff2e63;
+      --era-orange: #ff7a1a;
+      --era-purple: #7c3cff;
+      --text: #ffffff;
+      --muted: rgba(255, 255, 255, 0.66);
+      --card: rgba(10, 10, 10, 0.76);
+      --border: rgba(255, 255, 255, 0.15);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      color: var(--text);
+      background: #050505;
+      font-family: Arial, Helvetica, "Liberation Sans", sans-serif;
+    }
+
+    body {
+      background:
+        linear-gradient(115deg, rgba(0, 0, 0, 0.96) 0%, rgba(0, 0, 0, 0.86) 48%, rgba(0, 0, 0, 0.58) 100%),
+        linear-gradient(135deg, #111111 0%, #050505 58%, #190815 100%);
+    }
+
+    .background-accent {
+      position: fixed;
+      right: -240px;
+      bottom: -280px;
+      width: 720px;
+      height: 720px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 46, 99, 0.34), rgba(124, 60, 255, 0.18) 42%, transparent 68%);
+      z-index: 0;
+    }
+
+    .brand-mark {
+      position: fixed;
+      top: 58px;
+      left: 72px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      letter-spacing: 0.18em;
+      font-size: 16px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .brand-dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--era-pink);
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      height: 100vh;
+      width: 100vw;
+      padding: 72px;
+      display: grid;
+      grid-template-columns: 0.9fr 1.25fr;
+      align-items: center;
+      gap: 72px;
+    }
+
+    .eyebrow {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .title {
+      margin: 0;
+      font-size: 122px;
+      line-height: 0.9;
+      letter-spacing: -0.08em;
+      font-weight: 800;
+      text-transform: uppercase;
+      max-width: 780px;
+    }
+
+    .accent-line {
+      width: 250px;
+      height: 8px;
+      margin-top: 36px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--era-pink), var(--era-orange), var(--era-purple));
+    }
+
+    .clock {
+      margin-top: 42px;
+      font-size: 86px;
+      line-height: 1;
+      letter-spacing: -0.06em;
+      font-weight: 300;
+    }
+
+    .date-line {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .today-card {
+      justify-self: end;
+      width: 100%;
+      min-height: 620px;
+      padding: 48px;
+      border: 1px solid var(--border);
+      border-radius: 36px;
+      background: var(--card);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .today-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 7px;
+      border-radius: 36px 36px 0 0;
+      background: linear-gradient(90deg, var(--era-pink), var(--era-orange), var(--era-purple));
+    }
+
+    .card-label {
+      color: var(--muted);
+      font-size: 19px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 34px;
+    }
+
+    .day-list {
+      display: grid;
+      gap: 24px;
+    }
+
+    .day-item {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      gap: 20px;
+      align-items: start;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .day-item:last-child { border-bottom: 0; padding-bottom: 0; }
+
+    .number {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 800;
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .day-title {
+      margin: 0;
+      font-size: 32px;
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      font-weight: 800;
+    }
+
+    .day-source {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 19px;
+      line-height: 1.32;
+    }
+
+    .status {
+      color: var(--muted);
+      font-size: 26px;
+      line-height: 1.3;
+      margin-top: 120px;
+    }
+
+    @media (max-width: 900px) {
+      .brand-mark { top: 36px; left: 36px; }
+      .page { padding: 36px; grid-template-columns: 1fr; gap: 36px; }
+      .title { font-size: 72px; }
+      .clock { font-size: 62px; }
+      .today-card { min-height: 480px; padding: 34px; }
+      .day-title { font-size: 26px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="background-accent"></div>
+
+  <div class="brand-mark">
+    <div class="brand-dot"></div>
+    We Are Era
+  </div>
+
+  <main class="page">
+    <section class="hero" aria-label="Today">
+      <div class="eyebrow" id="weekday">Today</div>
+      <h1 class="title">Today</h1>
+      <div class="accent-line"></div>
+      <div class="clock" id="clock">--:--</div>
+      <div class="date-line" id="date-line">Loading date...</div>
+    </section>
+
+    <section class="today-card" aria-label="Day of today">
+      <div class="card-label">What day is it?</div>
+      <div id="days" class="day-list">
+        <div class="status">Loading today's days...</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    var CLOCK_OFFSET_MINUTES = 120;
+    var STORAGE_KEY = 'era-today-cache';
+
+    var FALLBACK_DAYS = {
+      '01-01': ['New Year’s Day', 'World Peace Day'],
+      '02-14': ['Valentine’s Day'],
+      '03-08': ['International Women’s Day'],
+      '03-20': ['International Day of Happiness'],
+      '04-22': ['Earth Day'],
+      '05-01': ['Labour Day'],
+      '05-04': ['Star Wars Day'],
+      '05-05': ['Liberation Day'],
+      '06-05': ['World Environment Day'],
+      '06-21': ['World Music Day'],
+      '07-17': ['World Emoji Day'],
+      '08-19': ['World Photography Day'],
+      '09-21': ['International Day of Peace'],
+      '10-01': ['International Coffee Day'],
+      '10-10': ['World Mental Health Day'],
+      '11-13': ['World Kindness Day'],
+      '12-05': ['Sinterklaas'],
+      '12-25': ['Christmas Day'],
+      '12-31': ['New Year’s Eve']
+    };
+
+    var TRANSLATIONS = [
+      ['Dag van de', 'Day of the'],
+      ['Wereld', 'World'],
+      ['Internationale Dag voor', 'International Day for'],
+      ['Internationale Dag van', 'International Day of'],
+      ['Nationale', 'National'],
+      ['Nederlandse', 'Dutch'],
+      ['Feestdag', 'Holiday']
+    ];
+
+    function correctedNow() {
+      return new Date(new Date().getTime() + CLOCK_OFFSET_MINUTES * 60000);
+    }
+
+    function twoDigits(number) {
+      return number < 10 ? '0' + number : '' + number;
+    }
+
+    function updateClock() {
+      var now = correctedNow();
+      document.getElementById('clock').textContent = twoDigits(now.getHours()) + ':' + twoDigits(now.getMinutes());
+      document.getElementById('weekday').textContent = now.toLocaleDateString('en-GB', { weekday: 'long' });
+      document.getElementById('date-line').textContent = now.toLocaleDateString('en-GB', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      });
+    }
+
+    function clean(text) {
+      return String(text || '').replace(/\s+/g, ' ').trim();
+    }
+
+    function escapeHtml(text) {
+      return clean(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function softTranslate(title) {
+      var result = clean(title);
+
+      for (var i = 0; i < TRANSLATIONS.length; i++) {
+        result = result.split(TRANSLATIONS[i][0]).join(TRANSLATIONS[i][1]);
+      }
+
+      result = result.replace(/^De\s+/i, 'The ');
+      result = result.replace(/^Het\s+/i, 'The ');
+      return result;
+    }
+
+    function renderDays(days, source) {
+      var container = document.getElementById('days');
+      var html = '';
+
+      if (!days || !days.length) {
+        container.innerHTML = '<div class="status">No special day found for today.</div>';
+        return;
+      }
+
+      for (var i = 0; i < days.length && i < 5; i++) {
+        html += '<article class="day-item">' +
+          '<div class="number">' + (i + 1) + '</div>' +
+          '<div>' +
+            '<h2 class="day-title">' + escapeHtml(days[i]) + '</h2>' +
+            '<div class="day-source">' + escapeHtml(source) + '</div>' +
+          '</div>' +
+        '</article>';
+      }
+
+      container.innerHTML = html;
+      localStorage.setItem(STORAGE_KEY, html);
+    }
+
+    function fallbackDays() {
+      var now = correctedNow();
+      var key = twoDigits(now.getMonth() + 1) + '-' + twoDigits(now.getDate());
+      var days = FALLBACK_DAYS[key] || ['A good day to make something nice'];
+      renderDays(days, 'Fallback calendar');
+    }
+
+    function parseFijneDagVan(text) {
+      var days = [];
+      var seen = {};
+      var cleaned = clean(text);
+      var matches = cleaned.match(/(?:Dag van de|Dag van het|Dag van|Wereld|Internationale Dag|Nationale|Nederlandse)[A-ZÀ-ÿa-z0-9 '\-]+/g) || [];
+
+      for (var i = 0; i < matches.length; i++) {
+        var title = softTranslate(matches[i]);
+        title = title.replace(/Vandaag.*/i, '').trim();
+        if (title.length < 6 || title.length > 70) continue;
+        if (seen[title]) continue;
+        seen[title] = true;
+        days.push(title);
+        if (days.length >= 5) break;
+      }
+
+      return days;
+    }
+
+    function loadSpecialDays() {
+      var cached = localStorage.getItem(STORAGE_KEY);
+      if (cached) document.getElementById('days').innerHTML = cached;
+
+      var url = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://www.fijnedagvan.nl/?_=' + new Date().getTime());
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', url, true);
+      xhr.timeout = 10000;
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            var parsed = parseFijneDagVan(xhr.responseText);
+            if (parsed.length) {
+              renderDays(parsed, 'Source: FijneDagVan.nl');
+            } else if (!cached) {
+              fallbackDays();
+            }
+          } else if (!cached) {
+            fallbackDays();
+          }
+        }
+      };
+
+      xhr.onerror = function () { if (!cached) fallbackDays(); };
+      xhr.ontimeout = function () { if (!cached) fallbackDays(); };
+      xhr.send();
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+    loadSpecialDays();
+    setInterval(loadSpecialDays, 3600000);
+
+    setTimeout(function () {
+      window.location.reload();
+    }, 21600000);
+  </script>
+</body>
+</html>
